@@ -1,4 +1,17 @@
-* やること
+* やること[5/8]
 https://golang.org/doc/articles/wiki/
+** DONE Introduction
+** DONE Getting Started
+** DONE Data Structures
+** DONE Introducing the net/http package (an interlude)
+** DONE Using net/http to serve wiki pages
+** TODO Editing Pages
+** TODO The html/template package
+** TODO Handling non-existent pages
+* Q&A
+** http: panic serving [::1]:46458: runtime error: invalid memory address or nil pointer dereference
+httpから呼び出せるようにやってみよう、のところ
+原因は呼び出すファイルを作っていないことだった。
+適当に作ると、うまく言った。
 
 
