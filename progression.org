@@ -1,13 +1,27 @@
-* やること[5/8]
+* やること[9/15]
 https://golang.org/doc/articles/wiki/
+http://golang.jp/pkg/http
 ** DONE Introduction
 ** DONE Getting Started
 ** DONE Data Structures
 ** DONE Introducing the net/http package (an interlude)
 ** DONE Using net/http to serve wiki pages
-** TODO Editing Pages
-** TODO The html/template package
-** TODO Handling non-existent pages
+** DONE Editing Pages
+** DONE The html/template package
+** DONE Handling non-existent pages
+** DONE Saving Pages
+FormValue(key)の理解が怪しい。Request struct の key を呼び出すんだろうけど。
+理解した。これで合ってる。
+type Request
+** TODO Error handling
+** TODO Template caching
+** TODO Validation
+** TODO Introducing Function Literals and Closures
+** TODO Try it out!
+** TODO Other tasks
+
+* これから[0/1]
+** TODO errorlog
 * Q&A
 ** http: panic serving [::1]:46458: runtime error: invalid memory address or nil pointer dereference
 httpから呼び出せるようにやってみよう、のところ
