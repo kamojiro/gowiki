@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"html/template"// After adding this package(html/template), we won't be using fmt anymore.
 	"io/ioutil"
 	"log"
@@ -12,6 +11,8 @@ type Page struct {
 	Title string
 	Body []byte
 }
+
+var templates = template.Must(template.ParseFiles("edit.html", "view.html"))
 
 // save ...
 func (p *Page) save() error {
@@ -31,8 +32,19 @@ func loadPage(title string) (*Page, error) {
 
 // render rendering
 func renderTemplate(w http.ResponseWriter, tmpl string, p *Page)  {
-	t, _ := template.ParseFiles(tmpl + ".html")
-	t.Execute(w, p)
+	err := templates.ExecuteTemplate(w, tmpl+".html", p)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+	// t, err := template.ParseFiles(tmpl + ".html")
+	// if err != nil {
+	// 	http.Error(w, err.Error(), http.StatusInternalServerError)
+	// 	return
+	// }
+	// t.Execute(w, p)
+	// if err != nil {
+	// 	http.Error(w, err.Error(), http.StatusInternalServerError)
+	// }
 }
 
 // viewHandler HandleFunc needs this Handler
@@ -72,7 +84,11 @@ func saveHandler(w http.ResponseWriter, r *http.Request)  {
 	title := r.URL.Path[len("/save/"):]
 	body := r.FormValue("body") //"body"にdataが格納されていて、FormValue で読み出している、と思う
 	p := &Page{Title: title, Body: []byte(body)}
-	p.save()
+	err := p.save()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 	http.Redirect(w, r, "/view/" + title, http.StatusFound)
 }
 

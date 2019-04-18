@@ -1,4 +1,4 @@
-* やること[9/15]
+* やること[11/15]
 https://golang.org/doc/articles/wiki/
 http://golang.jp/pkg/http
 ** DONE Introduction
@@ -8,13 +8,23 @@ http://golang.jp/pkg/http
 ** DONE Using net/http to serve wiki pages
 ** DONE Editing Pages
 ** DONE The html/template package
+type Template struct {
+        *parse.Tree
+        // contains filtered or unexported fields
+}
+type Tree struct {
+        Name      string    // name of the template represented by the tree.
+        ParseName string    // name of the top-level template during parsing, for error messages; added in Go 1.1
+        Root      *ListNode // top-level root of the tree.
+        // contains filtered or unexported fields
+}
 ** DONE Handling non-existent pages
 ** DONE Saving Pages
 FormValue(key)の理解が怪しい。Request struct の key を呼び出すんだろうけど。
 理解した。これで合ってる。
 type Request
-** TODO Error handling
-** TODO Template caching
+** DONE Error handling
+** DONE Template caching
 ** TODO Validation
 ** TODO Introducing Function Literals and Closures
 ** TODO Try it out!
